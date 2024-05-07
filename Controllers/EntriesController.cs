@@ -25,16 +25,7 @@ namespace Tracker.Controllers
             var entriesResult = await _context.Entries.ToListAsync();
             return entriesResult == null ? NotFound() : Ok(entriesResult);
         }
-        /*
-        [HttpGet("[controllers]/{id}")]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetById_IActionResult(int id)
-        {
-            var product = _context.Entries.Find(id);
-            return product == null ? NotFound() : Ok(product);
-        }
-        */
-        
+
         [HttpGet("[controller]/{date}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public DateTime GetBetweenDates(DateTime date)
@@ -55,15 +46,6 @@ namespace Tracker.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(Post), new { id = e.Id }, e);
         }
-
-
-
-        //TODO
-        //POST :id
-        //POST :id-id
-        //[HttpPost(Name = "")]        
-
-
 
     }
 }
