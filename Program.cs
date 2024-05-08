@@ -1,7 +1,10 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Tracker.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var fullPath = builder.Configuration["Db:ConnectionString"];
 
 // Add services to the container.
 // main init
@@ -11,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EntriesDbContext>(
-    os => os.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+    os => os.UseSqlServer(fullPath));
 
 var app = builder.Build();
 
